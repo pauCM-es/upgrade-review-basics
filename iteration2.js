@@ -39,6 +39,8 @@ let sonidos = []
 let general = []
 let medias = []
 
+console.log ("------array lista de sonidos (sin repetir) y de todos con sus volumenes--------")
+
 // 1. [sonidos sin repetir]
 for (const usuario of users) {
 
@@ -59,8 +61,9 @@ console.log(sonidos)
 console.log(general)
 
 
-console.log ("-------------------------")
+console.log ("------array de obj de sonidos (sin repetir) al que ir sumando volumens--------")
 
+// me hago un array de objetos con los sonidos y un volumen 0. a los que luego sumare los volumenes que de cada sonido.
 sonidos.forEach( element => {
     medias.push({sonido: element, mediaVol: 0})
 })
@@ -68,9 +71,9 @@ sonidos.forEach( element => {
 console.log(medias)
 
 
-console.log ("-------------------------")
+console.log ("---------no funciona----------------")
 
-
+// !Ayudita de Juan. esto da un resultado de suma que no es (no se donde esta el error)
 let allSounds = {}
 
 for(i in sonidos){
@@ -85,21 +88,29 @@ for(i in sonidos){
 
 console.log(allSounds)
 
-console.log ("-------------------------")
+console.log ("---------sumamos y contamos sonidos => MEDIA----------------")
 
+// aacedo a cada sonido del array de medias 
+for (const keyMedias in medias) {
+    let count = 0 //cada vez que salga el sonido aumenta el contaddor. Luego se usa para la media.
 
-for (const i in medias) {
-    let count = 0 //cada vez que salga el mis
-    for (const j in general){
-        if (medias[i].sonido === general[j].sonido){
+    // accedo a cada objeto del array "general".
+    for (const keyGeneral in general){
+
+        // comparo el sonido anterior con los del general.sonido al que accedo en este for.
+        // el keyMedias se mantiene el mismo mientra da toda la vuelta por el general (el keyGeneral si cambia).
+        if (medias[keyMedias].sonido === general[keyGeneral].sonido){
             count++
-            medias[i].mediaVol += general[j].vol
+
+            // si los sonidos coinciden sumamos el volumen a la mediaVol que iniciabamos a 0.
+            medias[keyMedias].mediaVol += general[keyGeneral].vol
         }
     }
+    // el keyMedias pasa al siguiente indice y vuelve a realizar el for in anterior por el array general
     
-    console.log(count)
-    console.log(medias[i].mediaVol)
-    medias[i].mediaVol = medias[i].mediaVol / count
+    // hacemos la media dentro del for in medias. 
+    console.log(medias[keyMedias].mediaVol + " / " + count)
+    medias[keyMedias].mediaVol = medias[keyMedias].mediaVol / count
 }
 
 console.log(medias)
