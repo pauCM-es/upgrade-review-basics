@@ -17,5 +17,17 @@ function swap (array, i, j) {
   return array
 
 }
+
+
+function swap2 (array, i, j) {
+  let element1 = array[i]
+  array.splice(i, 1, array[j])
+  array.splice(j, 1, element1)
+
+  return array
+
+}
+
+
 console.log(swap(players, 0, 2))
-console.log(swap(players, 0, 1))
+console.log(swap2(players, 0, 1))
